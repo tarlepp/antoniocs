@@ -15,7 +15,7 @@ class IndexController
     public function __invoke(SerializerInterface $serializer): JsonResponse
     {
         $xml = <<<XML
-<ItemMaintenance>
+<ItemMaintenance Version="1.0">
     <Header>
         <OrganizationID>Test</OrganizationID>
         <DivisionID>41</DivisionID>

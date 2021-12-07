@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Model\ItemMaintenance;
+use App\Model\Product;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\SerializerInterface;
@@ -15,15 +15,22 @@ class IndexController
     public function __invoke(SerializerInterface $serializer): JsonResponse
     {
         $xml = <<<XML
-<ItemMaintenance Version="1.0">
-    <Header>
-        <OrganizationID>Test</OrganizationID>
-        <DivisionID>41</DivisionID>
-    </Header>
-</ItemMaintenance>
+<Products>
+ <Product>
+  <Name>Test</Name>
+  <Descriptions>
+    <Description>
+      Description string 1
+    </Description>
+    <Description>
+      Description string 2
+    </Description>
+  </Descriptions>
+ </Product>
+</Products>
 XML;
 
-        $data = $serializer->deserialize($xml, ItemMaintenance::class, 'xml');
+        $data = $serializer->deserialize($xml, Product::class . '[]', 'xml');
 
         dd($data);
 
